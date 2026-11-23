@@ -186,9 +186,12 @@ class LiveSearch {
         this.form = document.getElementById('searchForm');
         this.input = document.getElementById('searchInput');
         this.dropdown = document.getElementById('searchDropdown');
+        if (!this.form || !this.input || !this.dropdown) {
+            return;
+        }
         this.loader = this.form.querySelector('.search-loader');
-        this.searchIcon = this.loader.querySelector('.bi-search');
-        this.spinner = this.loader.querySelector('.spinner-border');
+        this.searchIcon = this.loader ? this.loader.querySelector('.bi-search') : null;
+        this.spinner = this.loader ? this.loader.querySelector('.spinner-border') : null;
         
         this.debounceTimeout = null;
         this.minChars = 1;
@@ -214,10 +217,15 @@ class LiveSearch {
             }
         });
 
-        // Prevent form submission and run search immediately on Enter
+        // Prevent form submission and open first match or search on Enter
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.performSearch();
+            const firstItem = this.dropdown.querySelector('.search-item');
+            if (firstItem && this.dropdown.classList.contains('show')) {
+                firstItem.click();
+            } else {
+                this.performSearch();
+            }
         });
 
         // Close dropdown when clicking outside
@@ -308,8 +316,8 @@ class LiveSearch {
             this.dropdown.innerHTML = `
                 <div class="search-empty">
                     <i class="bi bi-search"></i>
-                    <p class="m-0 text-third">${window.searchTranslations.noResultsTitle}</p>
-                    <p class="small text-third mt-1">${window.searchTranslations.noResultsDesc}</p>
+                    <p class="m-0 text-third">${(window.searchTranslations && window.searchTranslations.noResultsTitle) || 'No Results Found'}</p>
+                    <p class="small text-third mt-1">${(window.searchTranslations && window.searchTranslations.noResultsDesc) || 'Try adjusting your search terms'}</p>
                 </div>`;
             this.dropdown.classList.add('show');
             return;
@@ -343,9 +351,11 @@ class LiveSearch {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const couponId = item.dataset.couponId;
-                // Open the coupon modal
-                window.Alpine.store('couponModal').open(parseInt(couponId));
-                // Hide the search dropdown
+                if (window.Alpine && window.Alpine.store && window.Alpine.store('couponModal')) {
+                    window.Alpine.store('couponModal').open(parseInt(couponId));
+                } else {
+                    window.location.href = `index.html?coupon=${couponId}`;
+                }
                 this.hideDropdown();
             });
         });
