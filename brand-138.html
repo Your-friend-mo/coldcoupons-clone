@@ -1,0 +1,1694 @@
+<!--
+    Website Designed by CounterMind on Marketing-Rhino.com
+    https://www.marketing-rhino.com/
+    It is forbidden to re-sell this landing page without Author Permission.
+-->
+<!DOCTYPE html>
+
+<html lang="en" 
+
+      data-bs-theme="light"
+
+      data-accent-color="a-c-c2">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Pokemon GO Free Codes, Promo Coupons &amp; Rewards [2026] | ColdCoupons</title>
+
+    <meta name="description" content="Claim verified Pokemon GO free game codes, promo codes, and digital rewards on ColdCoupons. Hand-tested daily by our team for 100% working savings.">
+
+    <meta name="base-url" content="https://coldcoupons.com">
+
+    <meta name="appearance-settings" content="{&quot;available_coupons_min&quot;:120,&quot;available_coupons_max&quot;:999}">
+
+    <!-- Favicon -->
+
+            <link rel="icon" type="image/x-icon" href="assets_mirror/public/assets/uploads/favicons/favicon_67fcf6b6423fa.png">
+
+        <script>
+
+        if (localStorage.getItem('user_color_mode')) {
+
+            document.documentElement.setAttribute('data-bs-theme', 
+
+                localStorage.getItem('user_color_mode')
+
+            );
+
+        }
+
+    </script>
+
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+
+        function getCouponFromUrl() {
+
+            const urlParams = new URLSearchParams(window.location.search);
+
+            return urlParams.get('coupon');
+
+        }
+
+        // Define global revealFullCode function
+
+        window.revealFullCode = function() {
+
+            const modalStore = Alpine.store('couponModal');
+
+            if (modalStore) {
+
+                // Call a new method that handles all state updates
+
+                modalStore.completeUnlock();
+
+            }
+
+        };
+
+        // Utility function for safe URL decoding
+
+        function safeDecodeUrl(url) {
+
+            if (!url) return '';
+
+            try {
+
+                return decodeURIComponent(url);
+
+            } catch (e) {
+
+                console.error('Error decoding URL:', e);
+
+                return url;
+
+            }
+
+        }
+
+        document.addEventListener('alpine:init', () => {
+
+
+
+            const setModalHeight = () => {
+
+                if (window.innerWidth < 768) {
+
+                    const vh = window.innerHeight * 0.01;
+
+                    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+                }
+
+            };
+
+
+
+            // Set initial height
+
+            setModalHeight();
+
+
+
+            // Update on resize and orientation change
+
+            window.addEventListener('resize', setModalHeight);
+
+            window.addEventListener('orientationchange', () => {
+
+                setTimeout(setModalHeight, 100);
+
+            });
+
+
+
+            Alpine.store('couponModal', {
+
+                isOpen: false,
+
+                coupon: null,
+
+                baseUrl: 'assets_mirror',
+
+                usesToday: 0,
+
+                currentStep: 1,
+
+                processingProgress: 0,
+
+                currentMessage: '',
+
+                showCheckmark: false,
+
+                codeRevealed: false,
+
+                isLoading: false,
+
+                isRevealed: false,
+
+                settings: {
+
+                    totalDuration: 10000,
+
+                    processSteps: [
+
+                        { 
+
+                            message: "Checking amount of codes left...", 
+
+                            showAtPercent: 1                        },
+
+                        { 
+
+                            message: "Checking chosen code validity...", 
+
+                            showAtPercent: 30                        },
+
+                        { 
+
+                            message: "This code is valid!", 
+
+                            showAtPercent: 85                        }
+
+                    ],
+
+                    locker: {
+
+                        enable_locker: true,
+
+                        locrul_occ: "OGLock();",
+
+                        locrul_ocsc: "        <script>\nfunction OGLock() {\n  window.open(\"https:\/\/unlockedrobot.com\/cl\/i\/2lj456\");\n}\n<\/script>",
+
+                        unlock_method: "function",
+
+                        unlock_delay: 5                    },
+
+                    appearance: {
+
+                        show_ratings: true,
+
+                        show_random_uses: true,
+
+                        show_available_coupons: true                    }
+
+                },
+
+                translations: {
+
+                    expiresIn: "Expires in"                },
+
+                
+
+                init() {
+
+                    // Listen for count updates
+
+                    window.addEventListener('couponCountUpdated', (event) => {
+
+                        if (this.coupon && this.coupon.id === event.detail.couponId) {
+
+                            // Force Alpine to re-render the count
+
+                            Alpine.nextTick(() => {
+
+                                this.coupon = { ...this.coupon };
+
+                            });
+
+                        }
+
+                    });
+
+
+
+                    window.addEventListener('orientationchange', () => {
+
+                        if (this.isOpen) {
+
+                            setTimeout(setViewportHeight, 100);
+
+                        }
+
+                    });
+
+                },
+
+
+
+                async open(couponId) {
+
+                    try {
+
+                        // Show overlay immediately with loading state
+
+                        this.isOpen = true;
+
+                        
+
+                        // Get scroll position before doing anything
+
+                        const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+                        
+
+                        // Lock the body scroll at current position
+
+                        document.body.classList.add('modal-open');
+
+                        document.body.style.top = `-${scrollPos}px`;
+
+                        document.body.style.width = '100%';
+
+                        
+
+                        // Fetch data
+
+                        if (window.LOCAL_COUPONS && window.LOCAL_COUPONS[String(couponId)]) {
+                            this.coupon = { ...window.LOCAL_COUPONS[String(couponId)] };
+                        } else {
+                            const url = `${this.baseUrl}/api/coupons/${couponId}.json`;
+                            const response = await fetch(url);
+                            if (!response.ok) throw new Error('Failed to fetch coupon data');
+                            this.coupon = await response.json();
+                        }
+
+                        
+
+                        window.dispatchEvent(new CustomEvent('coupon-changed', {
+
+                            detail: { couponId: this.coupon.id }
+
+                        }));
+
+                        
+
+                        const usesData = JSON.parse(localStorage.getItem('coupon_uses_today') || '{}');
+
+                        this.usesToday = usesData.uses?.[couponId] || Math.floor(Math.random() * 50) + 20;
+
+                        
+
+                        // Store scroll position explicitly
+
+                        this.scrollPosition = scrollPos;
+
+                        
+
+                        // Remove any lingering closing attribute
+
+                        const modalOverlay = document.querySelector('.modal-overlay');
+
+                        if (modalOverlay) {
+
+                            modalOverlay.removeAttribute('closing');
+
+                        }
+
+                        
+
+                        return false;
+
+                    } catch (error) {
+
+                        console.error('Error in open():', error);
+
+                        // Handle error state
+
+                        this.isOpen = false;
+
+                        document.body.classList.remove('modal-open');
+
+                        document.body.style.position = '';
+
+                        document.body.style.width = '';
+
+                        document.body.style.top = '';
+
+                    }
+
+                },
+
+
+
+                close() {
+
+                    const modalOverlay = document.querySelector('.modal-overlay');
+
+                    const isMobile = window.innerWidth <= 768;
+
+                    
+
+                    if (isMobile) {
+
+                        // Mobile: Add closing class and wait for animation
+
+                        modalOverlay.setAttribute('closing', '');
+
+                        setTimeout(() => {
+
+                            this.closeModal(modalOverlay);
+
+                        }, 240); // Match animation duration
+
+                    } else {
+
+                        // Desktop: Close immediately
+
+                        this.closeModal(modalOverlay);
+
+                    }
+
+                },
+
+
+
+                closeModal(modalOverlay) {
+
+                    // Remove the closing attribute if it exists
+
+                    modalOverlay?.removeAttribute('closing');
+
+                    
+
+                    // Get the scroll position from the body's top value
+
+                    const scrollPos = Math.abs(parseInt(document.body.style.top || '0'));
+
+                    
+
+                    // Remove modal-open class and reset body styles
+
+                    document.body.classList.remove('modal-open');
+
+                    document.body.style.position = '';
+
+                    document.body.style.width = '';
+
+                    document.body.style.top = '';
+
+                    
+
+                    // Set the scroll position without using scrollTo
+
+                    document.documentElement.style.scrollBehavior = 'auto';
+
+                    document.documentElement.scrollTop = scrollPos;
+
+                    document.body.scrollTop = scrollPos; // For Safari
+
+                    document.documentElement.style.scrollBehavior = '';
+
+                    
+
+                    this.isOpen = false;
+
+                    this.copyStatus = 'ready';
+
+                    
+
+                    // Reset all modal state including coupon data
+
+                    this.currentStep = 1;
+
+                    this.processingProgress = 0;
+
+                    this.currentMessage = '';
+
+                    this.showCheckmark = false;
+
+                    this.codeRevealed = false;
+
+                    this.isLoading = false;
+
+                    this.isRevealed = false;
+
+                    this.coupon = null;  // Add this line to reset coupon data
+
+                },
+
+
+
+                hideCode(code) {
+
+                    if (!code) return '';
+
+                    return code.substring(0, 3) + '***';
+
+                },
+
+
+
+                formatExpiry(validityDate) {
+
+                    return validityDate || "No expiration";
+
+                },
+
+
+
+                formatDate(date) {
+
+                    return new Date(date).toLocaleDateString();
+
+                },
+
+                formatTitle(title) {
+
+                    if (!title) return '';
+
+                    return utils.decodeHtmlEntities(title);
+
+                },
+
+
+
+                formatIncentive(incentive) {
+
+                    if (!incentive) return '';
+
+                    return utils.decodeHtmlEntities(incentive);
+
+                },
+
+
+
+                formatBrandName(brandName) {
+
+                    if (!brandName) return '';
+
+                    return utils.decodeHtmlEntities(brandName);
+
+                },
+
+
+
+                formatDescription(description) {
+
+                    if (!description) return '';
+
+                    return utils.decodeHtmlEntities(description);
+
+                },
+
+
+
+                formatCode(code) {
+
+                    if (!code) return '';
+
+                    try {
+
+                        const visiblePart = code.slice(-4);
+
+                        const hiddenPart = '•'.repeat(code.length - 4);
+
+                        return hiddenPart + visiblePart;
+
+                    } catch (error) {
+
+                        console.error('Error formatting code:', error);
+
+                        return '';
+
+                    }
+
+                },
+
+                formatPartialCode(code) {
+
+                    if (!code) return '';
+
+                    const visiblePart = code.slice(0, -3);
+
+                    const hiddenPart = '•'.repeat(3);
+
+                    return visiblePart + hiddenPart;
+
+                },   
+
+                async showStep2() {
+
+                    this.currentStep = 2;
+
+                    this.processingProgress = 0;
+
+                    this.currentMessage = '';
+
+                    this.showCheckmark = false;
+
+                    
+
+                    const startTime = performance.now();
+
+                    
+
+                    const animate = (currentTime) => {
+
+                        const elapsed = currentTime - startTime;
+
+                        const progress = Math.min(elapsed / this.settings.totalDuration, 1);
+
+                        
+
+                        const eased = this.easeInOutCubic(progress);
+
+                        this.processingProgress = eased * 100;
+
+                        
+
+                        // Update message based on progress
+
+                        for (const step of this.settings.processSteps) {
+
+                            if (this.processingProgress >= step.showAtPercent) {
+
+                                this.currentMessage = step.message;
+
+                            }
+
+                        }
+
+
+
+                        if (progress < 1) {
+
+                            requestAnimationFrame(animate);
+
+                        } else {
+
+                            // Show checkmark animation
+
+                            this.showCheckmark = true;
+
+                            // Wait for animation and then move to step 3
+
+                            setTimeout(() => this.showStep3(), 1500);
+
+                        }
+
+                    };
+
+
+
+                    requestAnimationFrame(animate);
+
+                },
+
+
+
+                showStep3() {
+
+                    this.currentStep = 3;
+
+                },
+
+        
+
+                // Better easing function for smoother animation
+
+                easeInOutCubic(x) {
+
+                    return x < 0.5 ? 
+
+                        4 * x * x * x : 
+
+                        1 - Math.pow(-2 * x + 2, 3) / 2;
+
+                },
+
+                completeUnlock() {
+
+                    this.codeRevealed = true;
+
+                    this.isLoading = false;
+
+                    this.isRevealed = true;
+
+                },
+
+                            handleUnlock(event, callback) {
+
+                    const unlockMethod = this.settings?.locker?.unlock_method;
+
+                    this.isLoading = true;  // Set loading state
+
+                    
+
+                    if (unlockMethod === 'timer') {
+
+                        setTimeout(() => {
+
+                            this.completeUnlock();
+
+                        }, (this.settings?.locker?.unlock_delay || 5) * 1000);
+
+                    } else if (unlockMethod === 'function') {
+
+                        if (this.coupon?.url_type === 'redirect') {
+
+                            window.open(this.coupon.coupon_locker_url, '_blank');
+
+                        }
+
+                        // Keep loading state until revealFullCode is called
+
+                    }
+
+                },
+
+
+
+                // Separate method for revealing code
+
+                revealCode() {
+
+                    this.codeRevealed = true;
+
+                },
+
+
+
+                async copyCode() {
+
+					try {
+
+						if (!this.codeRevealed) return;
+
+
+
+						if (navigator.clipboard && window.isSecureContext) {
+
+							await navigator.clipboard.writeText(this.coupon.coupon_code);
+
+							this.copyStatus = 'copied';
+
+						} else {
+
+							const textArea = document.createElement('textarea');
+
+							textArea.value = this.coupon.coupon_code;
+
+							
+
+							textArea.style.position = 'fixed';
+
+							textArea.style.left = '-999999px';
+
+							textArea.style.top = '-999999px';
+
+							document.body.appendChild(textArea);
+
+							
+
+							textArea.focus();
+
+							textArea.select();
+
+							document.execCommand('copy');
+
+							textArea.remove();
+
+							this.copyStatus = 'copied';
+
+						}
+
+
+
+						setTimeout(() => {
+
+							this.copyStatus = 'ready';
+
+						}, 2000);
+
+					} catch (err) {
+
+						console.error('Failed to copy code:', err);
+
+					}
+
+				}
+
+            });
+
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const directCouponId = getCouponFromUrl();
+
+            if (directCouponId) {
+
+                const modalStore = Alpine.store('couponModal');
+
+                if (modalStore) {
+
+                    modalStore.open(parseInt(directCouponId));
+
+                    
+
+                    // Clean up URL but maintain other parameters if they exist
+
+                    const newUrl = new URL(window.location.href);
+
+                    newUrl.searchParams.delete('coupon');
+
+                    window.history.replaceState({}, '', newUrl);
+
+                }
+
+            }
+
+        });
+
+    </script>
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Bootstrap Icons -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+    <!-- Color System -->
+
+    <link rel="stylesheet" href="assets_mirror/assets/front/css/colors.css">
+
+    <link rel="stylesheet" href="assets_mirror/assets/front/css/utility.css">
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="assets_mirror/assets/front/css/style.css">
+    
+    <!-- SEO Meta & Structured Data -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="ColdCoupons Editorial Team">
+    <meta name="keywords" content="ColdCoupons, free game codes, verified promo codes, gaming coupons, digital game keys">
+    <meta property="article:published_time" content="2026-01-15T08:00:00Z">
+    <meta property="article:modified_time" content="2026-11-19T22:30:00Z">
+    <link rel="canonical" href="https://coldcoupons.shop/brand-138.html">
+    <link rel="llms-txt" href="https://coldcoupons.shop/llms.txt">
+    <meta property="og:site_name" content="ColdCoupons">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Pokemon GO Free Codes, Promo Coupons &amp; Rewards [2026] | ColdCoupons">
+    <meta property="og:description" content="Claim verified Pokemon GO free game codes, promo codes, and digital rewards on ColdCoupons. Hand-tested daily by our team for 100% working savings.">
+    <meta property="og:url" content="https://coldcoupons.shop/brand-138.html">
+    <meta property="og:image" content="https://coldcoupons.shop/assets_mirror/public/assets/uploads/brand_logos/brand_100_9fae948b0c7a9627.webp">
+    <meta property="og:image:alt" content="Pokemon GO Free Codes, Promo Coupons &amp; Rewards [2026] | ColdCoupons">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@coldcoupons">
+    <meta name="twitter:title" content="Pokemon GO Free Codes, Promo Coupons &amp; Rewards [2026] | ColdCoupons">
+    <meta name="twitter:description" content="Claim verified Pokemon GO free game codes, promo codes, and digital rewards on ColdCoupons. Hand-tested daily by our team for 100% working savings.">
+    <meta name="twitter:image" content="https://coldcoupons.shop/assets_mirror/public/assets/uploads/brand_logos/brand_100_9fae948b0c7a9627.webp">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://coldcoupons.shop/#organization", "name": "ColdCoupons", "alternateName": "ColdCoupons.com", "url": "https://coldcoupons.shop/", "logo": {"@type": "ImageObject", "url": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/logo_darks/logo_dark_67fd5c00e3f9e.png", "width": 320, "height": 80}, "contactPoint": {"@type": "ContactPoint", "contactType": "customer support", "email": "support@coldcoupons.shop", "url": "https://coldcoupons.shop/contact.html", "availableLanguage": ["English"]}, "sameAs": ["https://www.wikidata.org/wiki/Q1622444", "https://en.wikipedia.org/wiki/Coupon", "https://github.com/emgo1-lgtm", "https://x.com/coldcoupons", "https://www.facebook.com/coldcoupons", "https://www.instagram.com/coldcoupons", "https://www.linkedin.com/company/coldcoupons"]}, {"@type": "Person", "@id": "https://coldcoupons.shop/#author", "name": "ColdCoupons Editorial Team", "url": "https://coldcoupons.shop/about.html", "worksFor": {"@id": "https://coldcoupons.shop/#organization"}, "sameAs": ["https://github.com/emgo1-lgtm", "https://x.com/coldcoupons"]}, {"@type": "WebSite", "@id": "https://coldcoupons.shop/#website", "url": "https://coldcoupons.shop/", "name": "ColdCoupons", "description": "Claim verified Pokemon GO free game codes, promo codes, and digital rewards on ColdCoupons. Hand-tested daily by our team for 100% working savings.", "inLanguage": "en-US", "publisher": {"@id": "https://coldcoupons.shop/#organization"}, "potentialAction": {"@type": "SearchAction", "target": "https://coldcoupons.shop/?q={search_term_string}", "query-input": "required name=search_term_string"}}, {"@type": "CollectionPage", "@id": "https://coldcoupons.shop/brand-138.html#webpage", "url": "https://coldcoupons.shop/brand-138.html", "name": "Pokemon GO Free Codes, Promo Coupons & Rewards [2026] | ColdCoupons", "description": "Claim verified Pokemon GO free game codes, promo codes, and digital rewards on ColdCoupons. Hand-tested daily by our team for 100% working savings.", "inLanguage": "en-US", "isPartOf": {"@id": "https://coldcoupons.shop/#website"}, "about": {"@id": "https://coldcoupons.shop/#organization"}, "author": {"@id": "https://coldcoupons.shop/#author"}, "publisher": {"@id": "https://coldcoupons.shop/#organization"}, "datePublished": "2026-01-15T08:00:00Z", "dateModified": "2026-11-19T22:30:00Z"}, {"@type": "Article", "@id": "https://coldcoupons.shop/brand-138.html#article", "headline": "Pokemon GO Free Codes, Promo Coupons & Rewards [2026] | ColdCoupons", "description": "Claim verified Pokemon GO free game codes, promo codes, and digital rewards on ColdCoupons. Hand-tested daily by our team for 100% working savings.", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/brand_logos/brand_100_9fae948b0c7a9627.webp", "inLanguage": "en-US", "author": {"@id": "https://coldcoupons.shop/#author"}, "publisher": {"@id": "https://coldcoupons.shop/#organization"}, "mainEntityOfPage": {"@id": "https://coldcoupons.shop/brand-138.html#webpage"}, "datePublished": "2026-01-15T08:00:00Z", "dateModified": "2026-11-19T22:30:00Z"}, {"@type": "FAQPage", "@id": "https://coldcoupons.shop/brand-138.html#faq", "mainEntity": [{"@type": "Question", "name": "What is ColdCoupons and how does it verify game codes?", "acceptedAnswer": {"@type": "Answer", "text": "ColdCoupons is a verified digital coupon platform that curates and hand-tests 322+ free game codes, promo codes, and in-game rewards across 100+ gaming brands with a 98.4% verification accuracy rate."}}, {"@type": "Question", "name": "Are the game codes on ColdCoupons completely free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every promo code and game key on ColdCoupons is 100% free to claim with no account registration or subscription required."}}, {"@type": "Question", "name": "How often does ColdCoupons update its coupon listings?", "acceptedAnswer": {"@type": "Answer", "text": "ColdCoupons verifies and updates its coupon inventory daily, removing expired codes within 2 hours and adding new releases for PC, PlayStation, Xbox, Nintendo Switch, and Roblox."}}]}, {"@type": "HowTo", "@id": "https://coldcoupons.shop/brand-138.html#howto", "name": "How to Redeem a Free Game Code on ColdCoupons", "description": "Step-by-step instructions to claim and redeem a verified game code on ColdCoupons.", "totalTime": "PT1M", "step": [{"@type": "HowToStep", "position": 1, "name": "Choose a verified coupon on ColdCoupons", "text": "Browse the ColdCoupons catalog or search for your game across 100+ supported brands."}, {"@type": "HowToStep", "position": 2, "name": "Click Get Code", "text": "Open the coupon details popup to check live availability and platform support."}, {"@type": "HowToStep", "position": 3, "name": "Unlock and copy your full code", "text": "Complete the quick human verification step, then click Copy Code to redeem it on your gaming platform."}]}, {"@type": "BreadcrumbList", "@id": "https://coldcoupons.shop/brand-138.html#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ColdCoupons", "item": "https://coldcoupons.shop/"}, {"@type": "ListItem", "position": 2, "name": "Pokemon GO on ColdCoupons", "item": "https://coldcoupons.shop/brand-138.html"}]}, {"@type": "ItemList", "@id": "https://coldcoupons.shop/brand-138.html#itemlist", "name": "Pokemon GO on ColdCoupons", "numberOfItems": 8, "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "Product", "name": "Pokemon GO Alpha Boost", "description": "Get Alpha Boost for Free in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_347_b6299888b3da9b03.webp", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "worstRating": "1", "ratingCount": "13481"}}}, {"@type": "ListItem", "position": 2, "item": {"@type": "Product", "name": "Pokemon GO Nissan Skyline", "description": "Unlock the Nissan Skyline in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_344_14214a84c65db211.jpg", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "worstRating": "1", "ratingCount": "966"}}}, {"@type": "ListItem", "position": 3, "item": {"@type": "Product", "name": "Pokemon GO All Exotic Items", "description": "Unlock All Exotic Items in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_343_e74f2dc444bb6000.jpg", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "bestRating": "5", "worstRating": "1", "ratingCount": "4485"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": "Product", "name": "Pokemon GO All Goal Explosions", "description": "Get All Goal Explosions in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_349_cefb011d366ec0fd.jpg", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "worstRating": "1", "ratingCount": "15821"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": "Product", "name": "Pokemon GO Mod Menu", "description": "Get Access to Secret Mods Menu in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_346_0401d1fd0d66d921.jpg", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "worstRating": "1", "ratingCount": "10448"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": "Product", "name": "Pokemon GO Unlock All Cars", "description": "Unlock All Cars in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_345_6a92cf9979966afc.jpg", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "bestRating": "5", "worstRating": "1", "ratingCount": "5663"}}}, {"@type": "ListItem", "position": 7, "item": {"@type": "Product", "name": "Pokemon GO 25,000 Credits", "description": "Get 25,000 Free Credits in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_341_26cd39d9946faaa6.webp", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "worstRating": "1", "ratingCount": "2814"}}}, {"@type": "ListItem", "position": 8, "item": {"@type": "Product", "name": "Pokemon GO Unlock Fennec", "description": "Unlock the Fennec Free in Pokemon GO", "image": "https://coldcoupons.shop/assets_mirror/public/assets/uploads/coupon_banners/coupon_342_5e3000895bee8daf.jpg", "brand": {"@type": "Brand", "name": "Pokemon GO"}, "offers": {"@type": "Offer", "url": "https://coldcoupons.shop/brand-138.html", "price": "0.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "ColdCoupons"}}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "bestRating": "5", "worstRating": "1", "ratingCount": "3916"}}}]}]}</script>
+    <!-- /SEO Meta & Structured Data -->
+
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-WK9T84JC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+    <!-- /Google Tag Manager -->
+</head>
+
+<body class="theme-light bg text">
+
+    <!-- Header -->
+
+    <header class="header d-flex align-items-center justify-content-center bg border-b border-light">
+
+        <nav class="navbar navbar-expand w-100">
+
+    <div class="container container-2xl">
+
+        <div class="d-flex align-items-center w-100 gap-3">
+
+            <!-- Logo - Make it smaller on mobile -->
+
+            <a class="navbar-brand p-0 flex-shrink-0" href="index.html">
+
+                                    <img src="assets_mirror/public/assets/uploads/logo_darks/logo_dark_67fd5c00e3f9e.png"
+
+                         class="theme-logo"
+
+                         data-light-src="assets_mirror/public/assets/uploads/logo_darks/logo_dark_67fd5c00e3f9e.png"
+
+                         data-dark-src="assets_mirror/public/assets/uploads/logo_lights/logo_light_67fd5bc840a84.png"
+
+                         alt="ColdCoupons Logo"
+
+                         height="28">
+
+                            </a>
+
+
+
+            <!-- Search Form - Always visible -->
+
+            <form class="d-flex position-relative flex-grow-1" role="search" id="searchForm">
+
+                <div class="input-group">
+
+                    <input type="search" 
+
+                        name="q" 
+
+                        class="form-control header-search text-third rounded-3 bg-secondary border border-subtle" 
+
+                        placeholder="👉 Search here"
+
+                        aria-label="👉 Search here"
+
+                        id="searchInput"
+
+                        autocomplete="off">
+
+                    <span class="search-loader position-absolute end-0 top-50 translate-middle-y pe-sm-3 pe-2 d-none">
+
+                        <i class="bi bi-search"></i>
+
+                        <div class="spinner-border spinner-border-sm accent d-none" role="status">
+
+                            <span class="visually-hidden">Loading...</span>
+
+                        </div>
+
+                    </span>
+
+                </div>
+
+                <div class="search-dropdown" id="searchDropdown"></div>
+
+            </form>
+
+
+
+            <!-- Theme Toggle - Show/hide based on screen size -->
+
+            <button class="btn btn-theme-switch btn-link nav-link" 
+
+                id="themeToggle" 
+
+                type="button"
+
+                aria-label="Toggle theme">
+
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" class="theme-icon-light" xmlns="http://www.w3.org/2000/svg">
+
+                    <circle cx="12" cy="12" r="6" stroke="var(--accent)" stroke-width="1.5"/>
+
+                    <path d="M12 2V3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <path d="M12 21V22" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <path d="M22 12L21 12" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <path d="M3 12L2 12" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <path d="M19.0708 4.92969L18.678 5.32252" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <path d="M5.32178 18.6777L4.92894 19.0706" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <path d="M19.0708 19.0703L18.678 18.6775" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                    <path d="M5.32178 5.32227L4.92894 4.92943" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                </svg>                        
+
+                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg">
+
+                    <path d="M21.0672 11.8568L20.4253 11.469L21.0672 11.8568ZM12.1432 2.93276L11.7553 2.29085V2.29085L12.1432 2.93276ZM21.25 12C21.25 17.1086 17.1086 21.25 12 21.25V22.75C17.9371 22.75 22.75 17.9371 22.75 12H21.25ZM12 21.25C6.89137 21.25 2.75 17.1086 2.75 12H1.25C1.25 17.9371 6.06294 22.75 12 22.75V21.25ZM2.75 12C2.75 6.89137 6.89137 2.75 12 2.75V1.25C6.06294 1.25 1.25 6.06294 1.25 12H2.75ZM15.5 14.25C12.3244 14.25 9.75 11.6756 9.75 8.5H8.25C8.25 12.5041 11.4959 15.75 15.5 15.75V14.25ZM20.4253 11.469C19.4172 13.1373 17.5882 14.25 15.5 14.25V15.75C18.1349 15.75 20.4407 14.3439 21.7092 12.2447L20.4253 11.469ZM9.75 8.5C9.75 6.41182 10.8627 4.5828 12.531 3.57467L11.7553 2.29085C9.65609 3.5593 8.25 5.86509 8.25 8.5H9.75ZM12 2.75C11.9115 2.75 11.8077 2.71008 11.7324 2.63168C11.6686 2.56527 11.6538 2.50244 11.6503 2.47703C11.6461 2.44587 11.6482 2.35557 11.7553 2.29085L12.531 3.57467C13.0342 3.27065 13.196 2.71398 13.1368 2.27627C13.0754 1.82126 12.7166 1.25 12 1.25V2.75ZM21.7092 12.2447C21.6444 12.3518 21.5541 12.3539 21.523 12.3497C21.4976 12.3462 21.4347 12.3314 21.3683 12.2676C21.2899 12.1923 21.25 12.0885 21.25 12H22.75C22.75 11.2834 22.1787 10.9246 21.7237 10.8632C21.286 10.804 20.7293 10.9658 20.4253 11.469L21.7092 12.2447Z" fill="var(--accent)"/>
+
+                </svg>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</nav>    </header>
+
+
+
+    <!-- Main Content Wrapper -->
+
+    <div class="main-wrapper">
+
+        
+
+<div class="brand-page-container d-flex w-100">
+
+    <!-- Brand Sidebar -->
+
+    <aside class="brand-sidebar bg-secondary border-r border-light px-xl-3 px-2 pt-4 pb-sm-0 pb-4 pt-sm-5">
+
+        <div class="brand-sidebar-content">
+
+            <!-- Brand Header -->
+
+            <div class="brand-header bg position-relative overflow-hidden p-4 rounded-4 mb-3 mb-sm-4">
+
+                <!-- Brand Logo -->
+
+                                    <div class="brand-logo-container mb-sm-4 mb-3 d-flex justify-content-center">
+
+                        <img src="assets_mirror/public/assets/uploads/brand_logos/brand_100_9fae948b0c7a9627.webp"
+
+                            alt="Pokemon GO"
+
+                            class="brand-logo">
+
+                    </div>
+
+                
+
+                <!-- Brand Title -->
+
+                <h1 class="brand-title h3 fw-600 mb-sm-3 mb-2 text-center">
+                    Pokemon GO ColdCoupons                </h1>
+
+
+
+                <!-- Brand Description -->
+
+                                    <div class="brand-description text-lighter">
+                        Pokemon GO is Niantic's globally beloved augmented reality mobile adventure. Catch Pokemon in the real world, battle in raid gyms, and claim free PokeCoins, remote raid passes, and egg incubator promo codes.<br />
+                    </div>
+
+                            </div>
+
+            <!-- Brand Stats -->
+
+            <div class="brand-stats-grid grid-3 gap-3 mb-3 mb-sm-4">
+
+                <!-- Total Coupons -->
+
+                <div class="stat-card bg p-sm-3 p-2 rounded-3 text-center border border-light">
+
+                    <div class="stat-icon accent mx-auto mb-2">
+
+                        <svg class="icon-rotate" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                            <path d="M14.005 4H9.99502C6.21439 4 4.32407 4 3.14958 5.17157C2.34091 5.97823 2.08903 7.12339 2.01058 8.98947C1.99502 9.35954 1.98724 9.54458 2.05634 9.66802C2.12545 9.79147 2.40133 9.94554 2.95308 10.2537C3.56586 10.5959 3.98007 11.2497 3.98007 12C3.98007 12.7503 3.56586 13.4041 2.95308 13.7463C2.40133 14.0545 2.12545 14.2085 2.05634 14.332C1.98724 14.4554 1.99502 14.6405 2.01058 15.0105C2.08903 16.8766 2.34091 18.0218 3.14958 18.8284C4.32407 20 6.21439 20 9.99502 20H14.005C17.7856 20 19.6759 20 20.8504 18.8284C21.6591 18.0218 21.911 16.8766 21.9894 15.0105C22.005 14.6405 22.0128 14.4554 21.9437 14.332C21.8746 14.2085 21.5987 14.0545 21.0469 13.7463C20.4341 13.4041 20.0199 12.7503 20.0199 12C20.0199 11.2497 20.4341 10.5959 21.0469 10.2537C21.5987 9.94554 21.8746 9.79147 21.9437 9.66803C22.0128 9.54458 22.005 9.35954 21.9894 8.98947C21.911 7.12339 21.6591 5.97823 20.8504 5.17157C19.6759 4 17.7856 4 14.005 4Z" stroke="var(--accent)" stroke-width="1.5"></path>
+
+                            <path d="M9 15L15 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+
+                            <path d="M15.5 14.5C15.5 15.0523 15.0523 15.5 14.5 15.5C13.9477 15.5 13.5 15.0523 13.5 14.5C13.5 13.9477 13.9477 13.5 14.5 13.5C15.0523 13.5 15.5 13.9477 15.5 14.5Z" fill="var(--accent)"></path>
+
+                            <path d="M10.5 9.5C10.5 10.0523 10.0523 10.5 9.5 10.5C8.94772 10.5 8.5 10.0523 8.5 9.5C8.5 8.94772 8.94772 8.5 9.5 8.5C10.0523 8.5 10.5 8.94772 10.5 9.5Z" fill="var(--accent)"></path>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="stat-value fw-600 h4 mb-1">
+                        4                    </div>
+                    <div class="stat-label text-third small">
+                        total coupons                        
+
+                    </div>
+
+                </div>
+
+                <!-- Verified Deals -->
+
+                <div class="stat-card bg p-sm-3 p-2 rounded-3 text-center border border-light">
+
+                    <div class="stat-icon accent mx-auto mb-2">
+
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                            <path d="M9.78133 3.89027C10.3452 3.40974 10.6271 3.16948 10.9219 3.02859C11.6037 2.70271 12.3963 2.70271 13.0781 3.02859C13.3729 3.16948 13.6548 3.40974 14.2187 3.89027C14.4431 4.08152 14.5553 4.17715 14.6752 4.25747C14.9499 4.4416 15.2584 4.56939 15.5828 4.63344C15.7244 4.66139 15.8713 4.67312 16.1653 4.69657C16.9038 4.7555 17.273 4.78497 17.5811 4.89378C18.2936 5.14546 18.8541 5.70591 19.1058 6.41844C19.2146 6.72651 19.244 7.09576 19.303 7.83426C19.3264 8.12819 19.3381 8.27515 19.3661 8.41669C19.4301 8.74114 19.5579 9.04965 19.7421 9.32437C19.8224 9.44421 19.918 9.55642 20.1093 9.78084C20.5898 10.3447 20.8301 10.6267 20.971 10.9214C21.2968 11.6032 21.2968 12.3958 20.971 13.0776C20.8301 13.3724 20.5898 13.6543 20.1093 14.2182C19.918 14.4426 19.8224 14.5548 19.7421 14.6747C19.5579 14.9494 19.4301 15.2579 19.3661 15.5824C19.3381 15.7239 19.3264 15.8709 19.303 16.1648C19.244 16.9033 19.2146 17.2725 19.1058 17.5806C18.8541 18.2931 18.2936 18.8536 17.5811 19.1053C17.273 19.2141 16.9038 19.2435 16.1653 19.3025C15.8713 19.3259 15.7244 19.3377 15.5828 19.3656C15.2584 19.4297 14.9499 19.5574 14.6752 19.7416C14.5553 19.8219 14.4431 19.9175 14.2187 20.1088C13.6548 20.5893 13.3729 20.8296 13.0781 20.9705C12.3963 21.2963 11.6037 21.2963 10.9219 20.9705C10.6271 20.8296 10.3452 20.5893 9.78133 20.1088C9.55691 19.9175 9.44469 19.8219 9.32485 19.7416C9.05014 19.5574 8.74163 19.4297 8.41718 19.3656C8.27564 19.3377 8.12868 19.3259 7.83475 19.3025C7.09625 19.2435 6.72699 19.2141 6.41893 19.1053C5.7064 18.8536 5.14594 18.2931 4.89427 17.5806C4.78546 17.2725 4.75599 16.9033 4.69706 16.1648C4.6736 15.8709 4.66188 15.7239 4.63393 15.5824C4.56988 15.2579 4.44209 14.9494 4.25796 14.6747C4.17764 14.5548 4.08201 14.4426 3.89076 14.2182C3.41023 13.6543 3.16997 13.3724 3.02907 13.0776C2.7032 12.3958 2.7032 11.6032 3.02907 10.9214C3.16997 10.6266 3.41023 10.3447 3.89076 9.78084C4.08201 9.55642 4.17764 9.44421 4.25796 9.32437C4.44209 9.04965 4.56988 8.74114 4.63393 8.41669C4.66188 8.27515 4.6736 8.12819 4.69706 7.83426C4.75599 7.09576 4.78546 6.72651 4.89427 6.41844C5.14594 5.70591 5.7064 5.14546 6.41893 4.89378C6.72699 4.78497 7.09625 4.7555 7.83475 4.69657C8.12868 4.67312 8.27564 4.66139 8.41718 4.63344C8.74163 4.56939 9.05014 4.4416 9.32485 4.25747C9.4447 4.17715 9.55691 4.08152 9.78133 3.89027Z" stroke="var(--accent)" stroke-width="1.5"/>
+
+                            <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="stat-value fw-600 h4 mb-1">
+
+                        8 <!-- Same as total coupons -->
+
+                    </div>
+
+                    <div class="stat-label text-third small">
+
+                        verified coupons                    </div>
+
+                </div>
+
+                <!-- Total Uses Today -->
+
+                                <div class="stat-card bg p-sm-3 p-2 rounded-3 text-center border border-light">
+
+                    <div class="stat-icon accent mx-auto mb-2">
+
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                            <circle cx="9" cy="6" r="4" stroke="var(--accent)" stroke-width="1.5"/>
+
+                            <path d="M15 9C16.6569 9 18 7.65685 18 6C18 4.34315 16.6569 3 15 3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                            <ellipse cx="9" cy="17" rx="7" ry="4" stroke="var(--accent)" stroke-width="1.5"/>
+
+                            <path d="M18 14C19.7542 14.3847 21 15.3589 21 16.5C21 17.5293 19.9863 18.4229 18.5 18.8704" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                        </svg>
+
+                    </div>
+
+                    <div class="stat-value fw-600 h4 mb-1 total-uses-today">
+
+                        <span class="placeholder-glow"><span class="placeholder w-100"></span></span>
+
+                    </div>
+
+                    <div class="stat-label text-third small">
+
+                        uses today                    </div>
+
+                </div>
+
+                 
+
+            </div>
+
+                                    <div class="brand-rating-section">
+
+                <div class="brand-rating-card bg p-4 rounded-3 border border-light">
+
+                    <div class="rating-stars" 
+
+                        x-data="{ 
+
+                            brandId: 131,
+
+                            userRating: null,
+
+                            totalRatings: 57594,
+
+                            showMessage: false,
+
+                            message: '',
+
+                            thankYouMessage: '',
+
+                            ratingRemovedMessage: '',
+
+
+
+                            init() {
+
+                                this.userRating = localStorage.getItem(`brand_rating_${this.brandId}`);
+
+                                this.thankYouMessage = this.$el.dataset.thankYouMessage;
+
+                                this.ratingRemovedMessage = this.$el.dataset.ratingRemovedMessage;
+
+                            },
+
+                            
+
+                            rate(value) {
+
+                                if (this.userRating === value.toString()) {
+
+                                    localStorage.removeItem(`brand_rating_${this.brandId}`);
+
+                                    this.userRating = null;
+
+                                    this.totalRatings--;
+
+                                    this.message = this.ratingRemovedMessage;
+
+                                } else {
+
+                                    if (!this.userRating) this.totalRatings++;
+
+                                    localStorage.setItem(`brand_rating_${this.brandId}`, value);
+
+                                    this.userRating = value.toString();
+
+                                    this.message = this.thankYouMessage;
+
+                                }
+
+                                this.showMessage = true;
+
+                                setTimeout(() => this.showMessage = false, 3000);
+
+                            }
+
+                        }" 
+
+                        data-thank-you-message="Thanks for your rating!"
+
+                        data-rating-removed-message="Rating removed">
+
+                        <div class="d-flex align-items-center justify-content-between">
+
+                            <!-- Left: Stars and Message -->
+
+                            <div class="d-block position-relative gap-3">
+
+                                <div class="stars-container d-flex gap-1">
+
+                                    <template x-for="i in 5">
+
+                                        <button @click="rate(i)" 
+
+                                                class="btn btn-link p-0 m-0 text-decoration-none">
+
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                                                <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" 
+
+                                                    :stroke="Number(userRating) >= i ? 'var(--accent)' : 'var(--accent-lightest)'"
+
+                                                    :fill="Number(userRating) >= i ? 'var(--accent)' : 'none'"
+
+                                                    stroke-width="1.5"/>
+
+                                            </svg>
+
+                                        </button>
+
+                                    </template>
+
+                                </div>
+
+                                <!-- Message will appear inline -->
+
+                                <div x-show="showMessage" 
+
+                                    x-transition 
+
+                                    class="rating-message small accent fw-500"
+
+                                    x-text="message">
+
+                                </div>
+
+                            </div>
+
+                            
+
+                            <!-- Right: Rating Stats -->
+
+                            <div class="rating-stats d-flex align-items-center gap-2">
+
+                                <div class="average-rating fw-600 h5 text mb-0">
+
+                                    5.0                                </div>
+
+                                <div class="rating-divider text-third">&bull;</div>
+
+                                <div class="rating-count text-third small">
+
+                                    <span x-text="totalRatings"></span> ratings 
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="brand-tips border-t border-light mt-4 pt-4">
+
+                            <h3 class="h6 d-flex align-items-center mb-3">
+
+                                <svg class="me-2" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                                    <path d="M10 19.5H14M10.6667 22H13.3333" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+
+                                    <path d="M7.41058 13.6805L8.51463 14.7196C8.82437 15.0112 9 15.4177 9 15.843C9 16.482 9.518 17 10.157 17H13.843C14.482 17 15 16.482 15 15.843C15 15.4177 15.1756 15.0112 15.4854 14.7196L16.5894 13.6805C18.1306 12.2187 18.9912 10.2984 18.9999 8.30193L19 8.21807C19 4.8069 15.866 2 12 2C8.13401 2 5 4.8069 5 8.21807L5.00007 8.30193C5.00875 10.2984 5.86939 12.2187 7.41058 13.6805Z" stroke="var(--accent)" stroke-width="1.5"/>
+
+                                </svg>
+
+                                <span>Top Tips</span>
+
+                            </h3>
+
+                            <ul class="list-unstyled mb-0 small">
+
+                                <li class="d-flex align-items-center mb-2">
+
+                                    <i class="bi bi-check2 text-success me-2"></i>
+
+                                    Take your time unlocking your code                                </li>
+
+                                <li class="d-flex align-items-center mb-2">
+
+                                    <i class="bi bi-check2 text-success me-2"></i>
+
+                                    Sign up for newsletter for exclusive deals                                </li>
+
+                                <li class="d-flex align-items-center">
+
+                                    <i class="bi bi-check2 text-success me-2"></i>
+
+                                    Use a mobile device for simpler process!                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+                    </div>
+
+    </aside>
+
+
+
+    <!-- Main Content -->
+
+    <main class="brand-main-content px-xl-5 px-2 py-sm-5 py-4">
+
+        <div class="mb-4 d-flex justify-content-between align-items-center">
+
+            <h2 class="h4 mb-0">Available ColdCoupons</h2>
+
+            <div class="text-third brand-result-count">
+
+                Showing 4 results            </div>
+
+        </div>
+
+
+
+        <!-- Coupons List -->
+
+        <div class="brand-coupons-list">
+
+                <div class="coupon-row bg hover:bg-secondary border border-light rounded-4 mb-4 transition-all position-relative overflow-hidden">
+                    <div class="coupon-row-pattern"></div>
+                    <div class="p-4">
+                        <div class="row align-items-center">
+                            <!-- Left: Badge and Incentive -->
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="coupon-incentive brand-coupon-incentive me-3">
+                                        <div class="coupon-incentive-inner d-flex flex-wrap align-items-center justify-content-center bg-secondary rounded-3 position-relative overflow-hidden">
+                                            <div class="incentive-content p-3 w-100 text-center position-relative">
+                                                <span class="incentive-text d-block accent fw-600">
+                                                    2500 PokeCoins
+                                                </span>
+                                            </div>
+                                            <div class="incentive-circle start"></div>
+                                            <div class="incentive-circle end"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h3 class="coupon-title h6 mb-2 fw-600">
+                                            Pokemon GO Free 2500 PokeCoins Promo Code
+                                        </h3>
+                                        <div class="position-relative">
+                                            <p class="text-lighter mb-1 small coupon-short-description">
+                                                Claim 2500 PokeCoins to buy storage upgrades, remote raid passes, lucky eggs, and star pieces.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Middle: Meta Info -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-meta d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-center gap-2 coupon-meta-col mb-sm-0 mb-2">
+                                        <div class="rating-badge bg-secondary rounded-pill px-2 py-1 d-inline-flex align-items-center gap-2">
+                                            <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M12 17V6" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                            </svg>
+                                            <span class="fw-600 accent">5.0</span>
+                                            <span class="text-third">(1425)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 text-third small uses-today coupon-meta-col" data-coupon-id="425">
+                                        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="9" cy="6" r="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M15 9C16.6569 9 18 7.65685 18 6C18 4.34315 16.6569 3 15 3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                            <ellipse cx="9" cy="17" rx="7" ry="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M18 14C19.7542 14.3847 21 15.3589 21 16.5C21 17.5293 19.9863 18.4229 18.5 18.8704" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="uses-count fw-500">238</span> uses today
+                                    </div>
+                                    <div class="coupons-remaining-wrapper coupon-meta-col" data-coupon-id="425">
+                                        <div class="d-flex align-items-center gap-2 small">
+                                            <svg class="icon-rotate" width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.005 4H9.99502C6.21439 4 4.32407 4 3.14958 5.17157C2.34091 5.97823 2.08903 7.12339 2.01058 8.98947C1.99502 9.35954 1.98724 9.54458 2.05634 9.66802C2.12545 9.79147 2.40133 9.94554 2.95308 10.2537C3.56586 10.5959 3.98007 11.2497 3.98007 12C3.98007 12.7503 3.56586 13.4041 2.95308 13.7463C2.40133 14.0545 2.12545 14.2085 2.05634 14.332C1.98724 14.4554 1.99502 14.6405 2.01058 15.0105C2.08903 16.8766 2.34091 18.0218 3.14958 18.8284C4.32407 20 6.21439 20 9.99502 20H14.005C17.7856 20 19.6759 20 20.8504 18.8284C21.6591 18.0218 21.911 16.8766 21.9894 15.0105C22.005 14.6405 22.0128 14.4554 21.9437 14.332C21.8746 14.2085 21.5987 14.0545 21.0469 13.7463C20.4341 13.4041 20.0199 12.7503 20.0199 12C20.0199 11.2497 20.4341 10.5959 21.0469 10.2537C21.5987 9.94554 21.8746 9.79147 21.9437 9.66803C22.0128 9.54458 22.005 9.35954 21.9894 8.98947C21.911 7.12339 21.6591 5.97823 20.8504 5.17157C19.6759 4 17.7856 4 14.005 4Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M9 15L15 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <path d="M15.5 14.5C15.5 15.0523 15.0523 15.5 14.5 15.5C13.9477 15.5 13.5 15.0523 13.5 14.5C13.5 13.9477 13.9477 13.5 14.5 13.5C15.0523 13.5 15.5 13.9477 15.5 14.5Z" fill="var(--accent)"></path>
+                                                <path d="M10.5 9.5C10.5 10.0523 10.0523 10.5 9.5 10.5C8.94772 10.5 8.5 10.0523 8.5 9.5C8.5 8.94772 8.94772 8.5 9.5 8.5C10.0523 8.5 10.5 8.94772 10.5 9.5Z" fill="var(--accent)"></path>
+                                            </svg>
+                                            <span class="coupons-remaining text-third">
+                                                <span class="count fw-500">14</span> coupons left
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Get Code Button -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-action">
+                                    <div x-data>
+                                        <div class="code-preview-wrapper">
+                                            <button @click="$store.couponModal.open(425);" class="btn-reveal border-0 bg-accent text-white rounded-2 py-2 px-2 fw-500 d-flex align-items-center justify-content-center gap-2 w-100">
+                                                <i class="bi bi-scissors"></i>
+                                                Get Code
+                                            </button>
+                                            <div class="hidden-code bg-secondary rounded-2">
+                                                <div class="code-content">
+                                                    <span class="code-text fw-600">
+                                                        FREE***
+                                                    </span>
+                                                </div>
+                                                <div class="code-overlay"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coupon-row-overlay"></div>
+                </div>
+
+
+                <div class="coupon-row bg hover:bg-secondary border border-light rounded-4 mb-4 transition-all position-relative overflow-hidden">
+                    <div class="coupon-row-pattern"></div>
+                    <div class="p-4">
+                        <div class="row align-items-center">
+                            <!-- Left: Badge and Incentive -->
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="coupon-incentive brand-coupon-incentive me-3">
+                                        <div class="coupon-incentive-inner d-flex flex-wrap align-items-center justify-content-center bg-secondary rounded-3 position-relative overflow-hidden">
+                                            <div class="incentive-content p-3 w-100 text-center position-relative">
+                                                <span class="incentive-text d-block accent fw-600">
+                                                    5x Raid Passes
+                                                </span>
+                                            </div>
+                                            <div class="incentive-circle start"></div>
+                                            <div class="incentive-circle end"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h3 class="coupon-title h6 mb-2 fw-600">
+                                            Pokemon GO 5x Remote Raid Pass Bundle
+                                        </h3>
+                                        <div class="position-relative">
+                                            <p class="text-lighter mb-1 small coupon-short-description">
+                                                Redeem 5 Remote Raid Passes to battle legendary Pokemon worldwide with friends.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Middle: Meta Info -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-meta d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-center gap-2 coupon-meta-col mb-sm-0 mb-2">
+                                        <div class="rating-badge bg-secondary rounded-pill px-2 py-1 d-inline-flex align-items-center gap-2">
+                                            <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M12 17V6" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                            </svg>
+                                            <span class="fw-600 accent">4.9</span>
+                                            <span class="text-third">(1442)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 text-third small uses-today coupon-meta-col" data-coupon-id="426">
+                                        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="9" cy="6" r="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M15 9C16.6569 9 18 7.65685 18 6C18 4.34315 16.6569 3 15 3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                            <ellipse cx="9" cy="17" rx="7" ry="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M18 14C19.7542 14.3847 21 15.3589 21 16.5C21 17.5293 19.9863 18.4229 18.5 18.8704" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="uses-count fw-500">238</span> uses today
+                                    </div>
+                                    <div class="coupons-remaining-wrapper coupon-meta-col" data-coupon-id="426">
+                                        <div class="d-flex align-items-center gap-2 small">
+                                            <svg class="icon-rotate" width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.005 4H9.99502C6.21439 4 4.32407 4 3.14958 5.17157C2.34091 5.97823 2.08903 7.12339 2.01058 8.98947C1.99502 9.35954 1.98724 9.54458 2.05634 9.66802C2.12545 9.79147 2.40133 9.94554 2.95308 10.2537C3.56586 10.5959 3.98007 11.2497 3.98007 12C3.98007 12.7503 3.56586 13.4041 2.95308 13.7463C2.40133 14.0545 2.12545 14.2085 2.05634 14.332C1.98724 14.4554 1.99502 14.6405 2.01058 15.0105C2.08903 16.8766 2.34091 18.0218 3.14958 18.8284C4.32407 20 6.21439 20 9.99502 20H14.005C17.7856 20 19.6759 20 20.8504 18.8284C21.6591 18.0218 21.911 16.8766 21.9894 15.0105C22.005 14.6405 22.0128 14.4554 21.9437 14.332C21.8746 14.2085 21.5987 14.0545 21.0469 13.7463C20.4341 13.4041 20.0199 12.7503 20.0199 12C20.0199 11.2497 20.4341 10.5959 21.0469 10.2537C21.5987 9.94554 21.8746 9.79147 21.9437 9.66803C22.0128 9.54458 22.005 9.35954 21.9894 8.98947C21.911 7.12339 21.6591 5.97823 20.8504 5.17157C19.6759 4 17.7856 4 14.005 4Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M9 15L15 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <path d="M15.5 14.5C15.5 15.0523 15.0523 15.5 14.5 15.5C13.9477 15.5 13.5 15.0523 13.5 14.5C13.5 13.9477 13.9477 13.5 14.5 13.5C15.0523 13.5 15.5 13.9477 15.5 14.5Z" fill="var(--accent)"></path>
+                                                <path d="M10.5 9.5C10.5 10.0523 10.0523 10.5 9.5 10.5C8.94772 10.5 8.5 10.0523 8.5 9.5C8.5 8.94772 8.94772 8.5 9.5 8.5C10.0523 8.5 10.5 8.94772 10.5 9.5Z" fill="var(--accent)"></path>
+                                            </svg>
+                                            <span class="coupons-remaining text-third">
+                                                <span class="count fw-500">14</span> coupons left
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Get Code Button -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-action">
+                                    <div x-data>
+                                        <div class="code-preview-wrapper">
+                                            <button @click="$store.couponModal.open(426);" class="btn-reveal border-0 bg-accent text-white rounded-2 py-2 px-2 fw-500 d-flex align-items-center justify-content-center gap-2 w-100">
+                                                <i class="bi bi-scissors"></i>
+                                                Get Code
+                                            </button>
+                                            <div class="hidden-code bg-secondary rounded-2">
+                                                <div class="code-content">
+                                                    <span class="code-text fw-600">
+                                                        FREE***
+                                                    </span>
+                                                </div>
+                                                <div class="code-overlay"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coupon-row-overlay"></div>
+                </div>
+
+
+                <div class="coupon-row bg hover:bg-secondary border border-light rounded-4 mb-4 transition-all position-relative overflow-hidden">
+                    <div class="coupon-row-pattern"></div>
+                    <div class="p-4">
+                        <div class="row align-items-center">
+                            <!-- Left: Badge and Incentive -->
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="coupon-incentive brand-coupon-incentive me-3">
+                                        <div class="coupon-incentive-inner d-flex flex-wrap align-items-center justify-content-center bg-secondary rounded-3 position-relative overflow-hidden">
+                                            <div class="incentive-content p-3 w-100 text-center position-relative">
+                                                <span class="incentive-text d-block accent fw-600">
+                                                    Research Ticket
+                                                </span>
+                                            </div>
+                                            <div class="incentive-circle start"></div>
+                                            <div class="incentive-circle end"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h3 class="coupon-title h6 mb-2 fw-600">
+                                            Pokemon GO Community Day Special Research Ticket
+                                        </h3>
+                                        <div class="position-relative">
+                                            <p class="text-lighter mb-1 small coupon-short-description">
+                                                Unlock exclusive Community Day research tasks with guaranteed shiny Pokemon and elite TMs.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Middle: Meta Info -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-meta d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-center gap-2 coupon-meta-col mb-sm-0 mb-2">
+                                        <div class="rating-badge bg-secondary rounded-pill px-2 py-1 d-inline-flex align-items-center gap-2">
+                                            <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M12 17V6" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                            </svg>
+                                            <span class="fw-600 accent">5.0</span>
+                                            <span class="text-third">(1459)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 text-third small uses-today coupon-meta-col" data-coupon-id="427">
+                                        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="9" cy="6" r="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M15 9C16.6569 9 18 7.65685 18 6C18 4.34315 16.6569 3 15 3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                            <ellipse cx="9" cy="17" rx="7" ry="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M18 14C19.7542 14.3847 21 15.3589 21 16.5C21 17.5293 19.9863 18.4229 18.5 18.8704" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="uses-count fw-500">238</span> uses today
+                                    </div>
+                                    <div class="coupons-remaining-wrapper coupon-meta-col" data-coupon-id="427">
+                                        <div class="d-flex align-items-center gap-2 small">
+                                            <svg class="icon-rotate" width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.005 4H9.99502C6.21439 4 4.32407 4 3.14958 5.17157C2.34091 5.97823 2.08903 7.12339 2.01058 8.98947C1.99502 9.35954 1.98724 9.54458 2.05634 9.66802C2.12545 9.79147 2.40133 9.94554 2.95308 10.2537C3.56586 10.5959 3.98007 11.2497 3.98007 12C3.98007 12.7503 3.56586 13.4041 2.95308 13.7463C2.40133 14.0545 2.12545 14.2085 2.05634 14.332C1.98724 14.4554 1.99502 14.6405 2.01058 15.0105C2.08903 16.8766 2.34091 18.0218 3.14958 18.8284C4.32407 20 6.21439 20 9.99502 20H14.005C17.7856 20 19.6759 20 20.8504 18.8284C21.6591 18.0218 21.911 16.8766 21.9894 15.0105C22.005 14.6405 22.0128 14.4554 21.9437 14.332C21.8746 14.2085 21.5987 14.0545 21.0469 13.7463C20.4341 13.4041 20.0199 12.7503 20.0199 12C20.0199 11.2497 20.4341 10.5959 21.0469 10.2537C21.5987 9.94554 21.8746 9.79147 21.9437 9.66803C22.0128 9.54458 22.005 9.35954 21.9894 8.98947C21.911 7.12339 21.6591 5.97823 20.8504 5.17157C19.6759 4 17.7856 4 14.005 4Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M9 15L15 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <path d="M15.5 14.5C15.5 15.0523 15.0523 15.5 14.5 15.5C13.9477 15.5 13.5 15.0523 13.5 14.5C13.5 13.9477 13.9477 13.5 14.5 13.5C15.0523 13.5 15.5 13.9477 15.5 14.5Z" fill="var(--accent)"></path>
+                                                <path d="M10.5 9.5C10.5 10.0523 10.0523 10.5 9.5 10.5C8.94772 10.5 8.5 10.0523 8.5 9.5C8.5 8.94772 8.94772 8.5 9.5 8.5C10.0523 8.5 10.5 8.94772 10.5 9.5Z" fill="var(--accent)"></path>
+                                            </svg>
+                                            <span class="coupons-remaining text-third">
+                                                <span class="count fw-500">14</span> coupons left
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Get Code Button -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-action">
+                                    <div x-data>
+                                        <div class="code-preview-wrapper">
+                                            <button @click="$store.couponModal.open(427);" class="btn-reveal border-0 bg-accent text-white rounded-2 py-2 px-2 fw-500 d-flex align-items-center justify-content-center gap-2 w-100">
+                                                <i class="bi bi-scissors"></i>
+                                                Get Code
+                                            </button>
+                                            <div class="hidden-code bg-secondary rounded-2">
+                                                <div class="code-content">
+                                                    <span class="code-text fw-600">
+                                                        FREE***
+                                                    </span>
+                                                </div>
+                                                <div class="code-overlay"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coupon-row-overlay"></div>
+                </div>
+
+
+                <div class="coupon-row bg hover:bg-secondary border border-light rounded-4 mb-4 transition-all position-relative overflow-hidden">
+                    <div class="coupon-row-pattern"></div>
+                    <div class="p-4">
+                        <div class="row align-items-center">
+                            <!-- Left: Badge and Incentive -->
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="coupon-incentive brand-coupon-incentive me-3">
+                                        <div class="coupon-incentive-inner d-flex flex-wrap align-items-center justify-content-center bg-secondary rounded-3 position-relative overflow-hidden">
+                                            <div class="incentive-content p-3 w-100 text-center position-relative">
+                                                <span class="incentive-text d-block accent fw-600">
+                                                    Incubator Pack
+                                                </span>
+                                            </div>
+                                            <div class="incentive-circle start"></div>
+                                            <div class="incentive-circle end"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <h3 class="coupon-title h6 mb-2 fw-600">
+                                            Pokemon GO Super Incubator & Star Piece Bundle
+                                        </h3>
+                                        <div class="position-relative">
+                                            <p class="text-lighter mb-1 small coupon-short-description">
+                                                Redeem 5 Super Incubators and 10 Star Pieces to hatch rare 10km and 12km eggs 2x faster.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Middle: Meta Info -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-meta d-flex flex-column gap-2">
+                                    <div class="d-flex align-items-center gap-2 coupon-meta-col mb-sm-0 mb-2">
+                                        <div class="rating-badge bg-secondary rounded-pill px-2 py-1 d-inline-flex align-items-center gap-2">
+                                            <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M12 17V6" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                            </svg>
+                                            <span class="fw-600 accent">4.9</span>
+                                            <span class="text-third">(1476)</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 text-third small uses-today coupon-meta-col" data-coupon-id="428">
+                                        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="9" cy="6" r="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M15 9C16.6569 9 18 7.65685 18 6C18 4.34315 16.6569 3 15 3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                            <ellipse cx="9" cy="17" rx="7" ry="4" stroke="var(--accent)" stroke-width="1.5"/>
+                                            <path d="M18 14C19.7542 14.3847 21 15.3589 21 16.5C21 17.5293 19.9863 18.4229 18.5 18.8704" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="uses-count fw-500">238</span> uses today
+                                    </div>
+                                    <div class="coupons-remaining-wrapper coupon-meta-col" data-coupon-id="428">
+                                        <div class="d-flex align-items-center gap-2 small">
+                                            <svg class="icon-rotate" width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.005 4H9.99502C6.21439 4 4.32407 4 3.14958 5.17157C2.34091 5.97823 2.08903 7.12339 2.01058 8.98947C1.99502 9.35954 1.98724 9.54458 2.05634 9.66802C2.12545 9.79147 2.40133 9.94554 2.95308 10.2537C3.56586 10.5959 3.98007 11.2497 3.98007 12C3.98007 12.7503 3.56586 13.4041 2.95308 13.7463C2.40133 14.0545 2.12545 14.2085 2.05634 14.332C1.98724 14.4554 1.99502 14.6405 2.01058 15.0105C2.08903 16.8766 2.34091 18.0218 3.14958 18.8284C4.32407 20 6.21439 20 9.99502 20H14.005C17.7856 20 19.6759 20 20.8504 18.8284C21.6591 18.0218 21.911 16.8766 21.9894 15.0105C22.005 14.6405 22.0128 14.4554 21.9437 14.332C21.8746 14.2085 21.5987 14.0545 21.0469 13.7463C20.4341 13.4041 20.0199 12.7503 20.0199 12C20.0199 11.2497 20.4341 10.5959 21.0469 10.2537C21.5987 9.94554 21.8746 9.79147 21.9437 9.66803C22.0128 9.54458 22.005 9.35954 21.9894 8.98947C21.911 7.12339 21.6591 5.97823 20.8504 5.17157C19.6759 4 17.7856 4 14.005 4Z" stroke="var(--accent)" stroke-width="1.5"></path>
+                                                <path d="M9 15L15 9" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"></path>
+                                                <path d="M15.5 14.5C15.5 15.0523 15.0523 15.5 14.5 15.5C13.9477 15.5 13.5 15.0523 13.5 14.5C13.5 13.9477 13.9477 13.5 14.5 13.5C15.0523 13.5 15.5 13.9477 15.5 14.5Z" fill="var(--accent)"></path>
+                                                <path d="M10.5 9.5C10.5 10.0523 10.0523 10.5 9.5 10.5C8.94772 10.5 8.5 10.0523 8.5 9.5C8.5 8.94772 8.94772 8.5 9.5 8.5C10.0523 8.5 10.5 8.94772 10.5 9.5Z" fill="var(--accent)"></path>
+                                            </svg>
+                                            <span class="coupons-remaining text-third">
+                                                <span class="count fw-500">14</span> coupons left
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Get Code Button -->
+                            <div class="col-12 col-lg-3">
+                                <div class="coupon-action">
+                                    <div x-data>
+                                        <div class="code-preview-wrapper">
+                                            <button @click="$store.couponModal.open(428);" class="btn-reveal border-0 bg-accent text-white rounded-2 py-2 px-2 fw-500 d-flex align-items-center justify-content-center gap-2 w-100">
+                                                <i class="bi bi-scissors"></i>
+                                                Get Code
+                                            </button>
+                                            <div class="hidden-code bg-secondary rounded-2">
+                                                <div class="code-content">
+                                                    <span class="code-text fw-600">
+                                                        FREE***
+                                                    </span>
+                                                </div>
+                                                <div class="code-overlay"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coupon-row-overlay"></div>
+                </div>
+
+>
